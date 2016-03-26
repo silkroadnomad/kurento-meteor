@@ -20,7 +20,7 @@ this webrtc demo is based on the [kurento tutorial tutorial-1-hello world](http:
 - within "Build Settings" add/set:
 	-  "enable bitcode" to ``no`
 	-  "Runpath Search Paths" setting with value ``@executable_path/Frameworks``
-	-  "Objective-C Bridging Header" to ${PROJECT_NAME}/Plugins/cordova-plugin-iosrtc/cordova-plugin-iosrtc-Bridging-Header.h (read more about the "Bridging Header" above). see: https://github.com/eface2face/cordova-plugin-iosrtc/blob/master/docs/Building.md
+	-  "Objective-C Bridging Header" to ``${PROJECT_NAME}/Plugins/cordova-plugin-iosrtc/cordova-plugin-iosrtc-Bridging-Header.h`` (read more about the "Bridging Header" above). see: https://github.com/eface2face/cordova-plugin-iosrtc/blob/master/docs/Building.md
 
 ##Android
 - in order to run this on android please execute ``meteor add-platform android``
