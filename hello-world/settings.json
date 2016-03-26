@@ -1,0 +1,10 @@
+{
+  
+  "public": {
+   "someKey": "someKey"
+  },
+  "private": {
+  	   "ws_uri": "ws://192.168.99.100:8888/kurento"
+  }	
+
+}
