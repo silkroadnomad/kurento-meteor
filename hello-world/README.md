@@ -15,7 +15,7 @@ this webrtc demo is based on the [kurento tutorial tutorial-1-hello world](http:
 
 
 ##iOS
-- in order to run this on ios, please execute ``meteor add-platform ios``
+- in order to run on ios, please execute ``meteor add-platform ios``
 - connect your ios device and run ``meteor run ios-device``  and open the project in xcode
 - don't convert to latest swift syntax! 
 - within "Build Settings" add/set:
@@ -25,8 +25,8 @@ this webrtc demo is based on the [kurento tutorial tutorial-1-hello world](http:
 	- meteor run-device ios
 
 ##Android
-- in order to run this on android, please execute ``meteor add-platform android``
-- edit AndroidManifest.xml in .meteor/cordova-build/platforms/android and add:  
+- in order to run on android, please execute ``meteor add-platform android``
+- edit AndroidManifest.xml in .meteor/local/cordova-build/platforms/android and add:  
 	``
 		<uses-permission android:name="android.permission.CAMERA" /> 
 		<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
