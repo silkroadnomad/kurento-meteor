@@ -15,20 +15,23 @@ this webrtc demo is based on the [kurento tutorial tutorial-1-hello world](http:
 
 
 ##iOS
-- in order to run this on ios please execute ``meteor add-platform ios``
-- connect your ios-device and run ``meteor run ios-device``  and open the project in xcode
+- in order to run this on ios, please execute ``meteor add-platform ios``
+- connect your ios device and run ``meteor run ios-device``  and open the project in xcode
+- don't convert to latest swift syntax! 
 - within "Build Settings" add/set:
-	-  "enable bitcode" to ``no`
+	-  "Enabl Bitcode" to ``no`
 	-  "Runpath Search Paths" setting with value ``@executable_path/Frameworks``
 	-  "Objective-C Bridging Header" to ``${PROJECT_NAME}/Plugins/cordova-plugin-iosrtc/cordova-plugin-iosrtc-Bridging-Header.h`` (read more about the "Bridging Header" above). see: https://github.com/eface2face/cordova-plugin-iosrtc/blob/master/docs/Building.md
+	- meteor run-device ios
 
 ##Android
-- in order to run this on android please execute ``meteor add-platform android``
+- in order to run this on android, please execute ``meteor add-platform android``
 - edit AndroidManifest.xml in .meteor/cordova-build/platforms/android and add:  
 	``
 		<uses-permission android:name="android.permission.CAMERA" /> 
 		<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 	``  
+- connect your android device and run ``meteor run android-device``
 
 ##Packages
 - signaling is done by [meteor streams] (http://arunoda.github.io/meteor-streams/) (inactive project!) 

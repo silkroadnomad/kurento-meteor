@@ -191,12 +191,11 @@ function hideSpinner() {
 
 }
 
-if (Meteor.isServer) {
 
-  
+var ws_uri = "ws://localhost:8888/kurento";
+if (Meteor.isServer) {
     //enter ip of kurento media server
-    var ws_uri = "ws://localhost:8888/kurento";
-    if(Meteor.settings.private.ws_uri) {
+    if(Meteor.settings.private && Meteor.settings.private.ws_uri) {
       ws_uri = Meteor.settings.private.ws_uri;
     }
     console.log('configuring kurento media server on url: '+ws_uri);
