@@ -295,8 +295,9 @@ if (Meteor.isServer) {
           }
       }
 
+      //connect endpoint with own endpoint
       var syncedConnect = Meteor.wrapAsync(webRtcEndpoint.connect,webRtcEndpoint);
-      syncedConnect(webRtcEndpoint);
+      syncedConnect(webRtcEndpoint); 
 
       webRtcEndpoint.on('OnIceCandidate', function(event) {
           var candidate = kurento.register.complexTypes.IceCandidate(event.candidate);

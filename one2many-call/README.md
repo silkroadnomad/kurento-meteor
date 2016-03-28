@@ -1,8 +1,6 @@
-#Kurento on Meteor - Hello World
+#Kurento on Meteor - One2Many-call
 
-this webrtc demo is based on the [kurento tutorial tutorial-1-hello world](http://doc-kurento.readthedocs.org/en/stable/tutorials/node/tutorial-1-helloworld.html) adapted for [meteor](http://www.meteor.com) 
-
-
+this webrtc demo is based on the [kurento tutorial](http://doc-kurento.readthedocs.org/en/stable/tutorials/node/) adapted for [meteor](http://www.meteor.com) 
 
 
 ##Installation
@@ -20,7 +18,7 @@ this webrtc demo is based on the [kurento tutorial tutorial-1-hello world](http:
 - connect your ios device and run ``meteor run ios-device``  and open the project in xcode
 - don't convert to latest swift syntax! 
 - within "Build Settings" add/set:
-	-  "Enable Bitcode" to ``no`
+	-  "Enable Bitcode" to ``no``
 	-  "Runpath Search Paths" setting with value ``@executable_path/Frameworks``
 	-  "Objective-C Bridging Header" to ``${PROJECT_NAME}/Plugins/cordova-plugin-iosrtc/cordova-plugin-iosrtc-Bridging-Header.h`` (read more about the "Bridging Header" above). see: https://github.com/eface2face/cordova-plugin-iosrtc/blob/master/docs/Building.md
 	- meteor run-device ios
