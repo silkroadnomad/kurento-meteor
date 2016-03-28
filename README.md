@@ -1,4 +1,4 @@
-#Kurento on Meteor - One2Many-call
+#Kurento on Meteor 
 
 these webrtc demos is based on the [kurento tutorial](http://doc-kurento.readthedocs.org/en/stable/tutorials/node/) adapted for [meteor](http://www.meteor.com) 
 
