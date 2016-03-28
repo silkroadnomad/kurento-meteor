@@ -65,12 +65,6 @@ window.onload = function() {
   });
 }
 
-window.onbeforeunload = function() {
- // ws.close();
-}
-
-
-
 function start() {
   console.log('Starting video call ...')
   // Disable start button

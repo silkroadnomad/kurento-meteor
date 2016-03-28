@@ -40,3 +40,12 @@ this webrtc demo is based on the [kurento tutorial](http://doc-kurento.readthedo
 ##known issues
 1. force-ssl package breaks cordova in this version
 2. don't upgrade to meteor version 1.3 because cordova-plugin-iosrtc package does not work with cordova 4
+3. presenter gets wrong iceCanditates back from server when viewer connects ()
+
+##Todo 
+- (online) make Bootstrap work - (bootstrap should be included why its not reacting) 
+- (online) enable ssl (necessary for android)
+
+##Done
+- 2016-03-16 (offline - Train Eggenfelden-Kufstein) - enable spinner 
+
