@@ -1,6 +1,6 @@
 #Kurento on Meteor 
 
-these webrtc demos are based on the [kurento tutorial](http://doc-kurento.readthedocs.org/en/stable/tutorials/node/) adapted for [meteor](http://www.meteor.com) 
+these webrtc demos are based on the [kurento tutorial](http://doc-kurento.readthedocs.org/en/stable/tutorials.html) adapted for [meteor](http://www.meteor.com) 
 
 
 ##Installation

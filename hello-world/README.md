@@ -1,6 +1,6 @@
 #Kurento on Meteor - Hello World
 
-this webrtc demo is based on the [kurento tutorial tutorial-1-hello world](http://doc-kurento.readthedocs.org/en/stable/tutorials/node/tutorial-1-helloworld.html) adapted for [meteor](http://www.meteor.com) 
+this webrtc demo is based on the [kurento tutorial tutorial-1-hello world](http://doc-kurento.readthedocs.org/en/stable/tutorials.html) adapted for [meteor](http://www.meteor.com) 
 
 
 
