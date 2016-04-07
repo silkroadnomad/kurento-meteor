@@ -4,7 +4,7 @@
    "someKey": "someKey"
   },
   "private": {
-  	   "ws_uri": "ws://192.168.99.100:8888/kurento"
+  	   "ws_uri": "ws://52.207.245.179:8888/kurento"
   }	
 
 }
