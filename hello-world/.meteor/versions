@@ -39,7 +39,6 @@ logging@1.0.11
 meteor@1.1.13
 meteor-base@1.0.3
 meteorhacks:async@1.0.0
-meteorhacks:npm@1.5.0
 minifier-css@1.1.10
 minifier-js@1.1.10
 minimongo@1.0.13
@@ -51,7 +50,6 @@ mongo@1.1.6
 mongo-id@1.0.3
 nemo64:bootstrap@3.3.5_2
 nemo64:bootstrap-data@3.3.5
-npm-container@1.2.0
 npm-mongo@1.4.42
 observe-sequence@1.0.10
 ordered-dict@1.0.6

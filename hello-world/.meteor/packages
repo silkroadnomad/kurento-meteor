@@ -17,13 +17,12 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 insecure                # Allow all DB writes from clients (for prototyping)
 random
-meteorhacks:npm
 check
 lepozepo:streams
 
 
-npm-container
 nemo64:bootstrap
 crosswalk
 standard-minifier-css
 standard-minifier-js
+meteorhacks:async

@@ -9,6 +9,9 @@ if(Meteor.isCordova){
 
 if (Meteor.isClient) {
 
+  //require('webrtc-adapter');
+  var kurentoUtils = require('kurento-utils');
+
   Template.hello.events({
     'click #start': function () {
       console.log('starting webrtc');
@@ -76,7 +79,11 @@ function start() {
     var options = {
       localVideo: videoInput,
       remoteVideo: videoOutput,
-      onicecandidate : onIceCandidate
+      onicecandidate : onIceCandidate,
+            iceServers: [
+                          {urls: 'stun:173.194.71.127:19302'},
+                          {urls: 'turn:5.9.154.226:3478?transport=tcp', username:'akashionata', credential: 'silkroad2015'}
+                        ]
     }
 
     webRtcPeer = kurentoUtils.WebRtcPeer.WebRtcPeerSendrecv(options, function(error) {
@@ -194,19 +201,8 @@ if (Meteor.isServer) {
     }
     console.log('configuring kurento media server on url: '+ws_uri);
 
-    // SSLProxy({
-    //    port: 8443, //or 443 (normal port/requires sudo)
-    //    ssl : {
-    //         key: Assets.getText("key.pem"),
-    //         cert: Assets.getText("cert.pem"),
-
-    //         //Optional CA
-    //         //Assets.getText("ca.pem")
-    //    }
-    // });
-
-
-  var kurento = Meteor.npmRequire("kurento-client");
+  var kurento = require('kurento-client');
+  // var kurento = Meteor.npmRequire("kurento-client");
   var sessions = {};
   var candidatesQueue = {};
   var kurentoClient = null;
