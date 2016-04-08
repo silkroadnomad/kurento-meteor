@@ -43,9 +43,11 @@ these webrtc demos are based on the [kurento tutorial](http://doc-kurento.readth
 3. presenter gets wrong iceCanditates back from server when viewer connects ()
 
 ##Todo 
+- (offline) put stun/turn settings into settings file
 - (online) make Bootstrap work - (bootstrap should be included why its not reacting) 
 - (online) enable ssl (necessary for android)
 
 ##Done
+- 2016-04-08 Update to Meteor 1.3 with n
 - 2016-03-16 (offline - train Eggenfelden-Kufstein) - enable spinner 
 

@@ -1,0 +1,32 @@
+{
+  "name": "hello-world",
+  "version": "0.1.0",
+  "description": "Hello World WebRTC with meteor 1.3 and Kurento-Media-Server",
+  "main": "hello-world.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inspiraluna/kurento-meteor.git"
+  },
+  "keywords": [
+    "webrtc",
+    "kurento",
+    "meteor"
+  ],
+  "author": "Nico Krause",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/inspiraluna/kurento-meteor/issues"
+  },
+  "homepage": "https://github.com/inspiraluna/kurento-meteor#readme",
+  "dependencies": {
+    "bufferutil": "^1.2.1",
+    "kurento-client": "^6.4.1",
+    "kurento-utils": "^6.2.0",
+    "meteor-node-stubs": "^0.2.1",
+    "uuid": "^2.0.1",
+    "webrtc-adapter": "^1.0.7"
+  }
+}
