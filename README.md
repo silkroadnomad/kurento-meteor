@@ -9,8 +9,9 @@ these webrtc demos are based on the [kurento tutorial](http://doc-kurento.readth
 3. ``cd kurento-meteor/ EXAMPLE``
 4. install and run kurento [docker](https://www.docker.com/) [image] (https://github.com/Kurento/kurento-docker/tree/master/docker) please run it with ``sudo docker run -d --name kurento -p 8888:8888 fiware/stream-oriented-kurento``
 5. configure settings.json if kurento media server runs on different host
-6. run ``meteor --settings setings.json` twice (after installing kurento-client npm package)
-7. connect to http://localhost:3000
+6. run ``npm install`` (install all npm modules)
+7. run ``meteor --settings setings.json` 
+8. connect to http://localhost:3000
 
 
 ##iOS
@@ -48,6 +49,7 @@ these webrtc demos are based on the [kurento tutorial](http://doc-kurento.readth
 - (online) enable ssl (necessary for android)
 
 ##Done
+- 20
 - 2016-04-08 Update to Meteor 1.3 with n
 - 2016-03-16 (offline - train Eggenfelden-Kufstein) - enable spinner 
 

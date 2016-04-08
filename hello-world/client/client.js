@@ -5,183 +5,189 @@ if(Meteor.isCordova){
 }
 
 if (Meteor.isClient) {
- 
-  var video;
-  var webRtcPeer;
-    
+
+  //require('webrtc-adapter');
+  var kurentoUtils = require('kurento-utils');
+
+  Template.hello.events({
+    'click #start': function () {
+      console.log('starting webrtc');
+     start();
+    },
+    'click #stop': function () {
+      console.log('starting webrtc');
+     stop();
+    }
+  });
+
+var videoInput;
+var videoOutput;
+var webRtcPeer;
+var state = null;
+
+const I_CAN_START = 0;
+const I_CAN_STOP = 1;
+const I_AM_STARTING = 2;
+
   Template.hello.rendered = function() {
+  // console = new Console();
+  console.log('Page loaded ...');
+  videoInput = document.getElementById('videoInput');
+  videoOutput = document.getElementById('videoOutput');
+  setState(I_CAN_START);
 
-    console.log('Page loaded ...');
-    video = document.getElementById('video');
 
-    roomStream.on('serverMessage', function(message) {
+  roomStream.on('message', function(message) {
 
-      var parsedMessage = JSON.parse(message);
-      console.info('Received message: ' + parsedMessage.id);
-      
-      switch (parsedMessage.id) {
-      case 'presenterResponse':
-        presenterResponse(parsedMessage);
+    var parsedMessage = JSON.parse(message);
+    console.info('Received message: ' + parsedMessage.id);
+    
+    switch (parsedMessage.id) {
+      case 'startResponse':
+        startResponse(parsedMessage);
         break;
-      case 'viewerResponse':
-        viewerResponse(parsedMessage);
-        break;
-      case 'stopCommunication':
-        dispose();
+      case 'error':
+        if (state == I_AM_STARTING) {
+          setState(I_CAN_START);
+        }
+        onError('Error message from server: ' + parsedMessage.message);
         break;
       case 'iceCandidate':
+        console.log('iceCandidate received... adding to webRTCPeer'+JSON.stringify(parsedMessage.candidate));
         webRtcPeer.addIceCandidate(parsedMessage.candidate)
         break;
       default:
-        console.error('Unrecognized message', parsedMessage);
-      }
-    });
-  }
-
-  Template.hello.events({
-    'click #call': function () {
-      console.log('starting webrtc');
-        presenter(); 
-    },
-    'click #viewer': function () {
-      console.log('starting webrtc');
-        viewer();
-    },
-    'click #terminate': function () {
-      console.log('starting webrtc');
-        stop();
-    },
+        if (state == I_AM_STARTING) {
+          setState(I_CAN_START);
+        }
+        onError('Unrecognized message', parsedMessage);
+    }
   });
+}
 
-  function presenterResponse(message) {
-    if (message.response != 'accepted') {
-      var errorMsg = message.message ? message.message : 'Unknow error';
-      console.warn('Call not accepted for the following reason: ' + errorMsg);
-      dispose();
-    } else {
-      webRtcPeer.processAnswer(message.sdpAnswer);
-    }
-  }
+function start() {
+  console.log('Starting video call ...')
+  
+  // Disable start button
+  setState(I_AM_STARTING);
+  showSpinner(videoInput, videoOutput);
 
-  function viewerResponse(message) {
-    if (message.response != 'accepted') {
-      var errorMsg = message.message ? message.message : 'Unknow error';
-      console.warn('Call not accepted for the following reason: ' + errorMsg);
-      dispose();
-    } else {
-      webRtcPeer.processAnswer(message.sdpAnswer);
-    }
-  }
-
-  function presenter() {
-    if (!webRtcPeer) {
-      showSpinner(video);
-
-      var options = {
-        localVideo: video,
-        onicecandidate : onIceCandidate,
-                    iceServers: [
-                          {urls: 'stun:173.194.71.127:19302'},
-                          {urls: 'turn:5.9.154.226:3478?transport=tcp', username:'akashionata', credential: 'silkroad2015'}
-                        ]
-        }
-
-      webRtcPeer = kurentoUtils.WebRtcPeer.WebRtcPeerSendonly(options, function(error) {
-        if(error) return onError(error);
-
-        this.generateOffer(onOfferPresenter);
-      });
-    }
-  }
-
-  function onOfferPresenter(error, offerSdp) {
-      if (error) return onError(error);
-
-    var message = {
-      id : 'presenter',
-      sdpOffer : offerSdp
-    };
-    sendMessage(message);
-  }
-
-  function viewer() {
-    if (!webRtcPeer) {
-        showSpinner(video);
-
-        var options = {
-          remoteVideo: video,
-          onicecandidate : onIceCandidate,
-                      iceServers: [
-                          {urls: 'stun:173.194.71.127:19302'},
-                          {urls: 'turn:5.9.154.226:3478?transport=tcp', username:'akashionata', credential: 'silkroad2015'}
-                        ]
-        }
-
-        webRtcPeer = kurentoUtils.WebRtcPeer.WebRtcPeerRecvonly(options, function(error) {
-          if(error) return onError(error);
-
-          this.generateOffer(onOfferViewer);
-        });
-    }
-  }
-
-  function onOfferViewer(error, offerSdp) {
-    if (error) return onError(error)
-
-    var message = {
-      id : 'viewer',
-      sdpOffer : offerSdp
-    }
-    sendMessage(message);
-  }
-
-  function onIceCandidate(candidate) {
-      // console.log('Local candidate' + JSON.stringify(candidate));
-
-       var message = {
-          id : 'onIceCandidate',
-          candidate : candidate
-       }
-       sendMessage(message);
-  }
-
-  function stop() {
-    if (webRtcPeer) {
-      var message = {
-          id : 'stop'
+  console.log('Creating WebRtcPeer and generating local sdp offer ...');
+      
+    var options = {
+      localVideo: videoInput,
+      remoteVideo: videoOutput,
+      onicecandidate : onIceCandidate
       }
-      sendMessage(message);
-      dispose();
-    }
-  }
+    
+      if(Meteor.settings.public && Meteor.settings.public.iceServers) {
+        options.iceServers = Meteor.settings.public.iceServers;
+        console.log('iceServers from settings.json:'+options.iceServers);
+      }
 
-  function dispose() {
-    if (webRtcPeer) {
-      webRtcPeer.dispose();
-      webRtcPeer = null;
-    }
-    hideSpinner(video);
-  }
+    console.log(options);
+    webRtcPeer = kurentoUtils.WebRtcPeer.WebRtcPeerSendrecv(options, function(error) {
+        if(error) return onError(error);
+        this.generateOffer(onOffer);
+    });
+}
 
-  function sendMessage(message) {
-    var jsonMessage = JSON.stringify(message);
-   // console.log('Sending message: ' + jsonMessage);
-     roomStream.emit("clientMessage", jsonMessage);
-  }
+function onIceCandidate(candidate) {
 
-  function showSpinner() {
-    for (var i = 0; i < arguments.length; i++) {
-      arguments[i].poster = './img/transparent-1px.png';
-      arguments[i].style.background = 'center transparent url("./img/spinner.gif") no-repeat';
-    }
-  }
+    console.log('Local candidate about to send from client' );//+ JSON.stringify(candidate));
 
-  function hideSpinner() {
-    for (var i = 0; i < arguments.length; i++) {
-      arguments[i].src = '';
-      arguments[i].poster = './img/webrtc.png';
-      arguments[i].style.background = '';
-    }
+     var message = {
+        id : 'onIceCandidate',
+        candidate : candidate
+     };
+     sendMessage(message);
+}
+
+function onOffer(error, offerSdp) {
+  if(error) return onError(error);
+
+  console.info('Invoking SDP offer callback function ' + location.host);
+  var message = {
+    id : 'start',
+    sdpOffer : offerSdp
   }
+  sendMessage(message);
+}
+
+function onError(error) {
+  console.error(error);
+}
+
+function startResponse(message) {
+  setState(I_CAN_STOP);
+  console.log('SDP answer received from server. Processing ...');
+  webRtcPeer.processAnswer(message.sdpAnswer);
+}
+
+function stop() {
+  console.log('Stopping video call ...');
+  setState(I_CAN_START);
+  if (webRtcPeer) {
+    webRtcPeer.dispose();
+    webRtcPeer = null;
+
+    var message = {
+      id : 'stop'
+    }
+    sendMessage(message);
+  }
+  hideSpinner(videoInput, videoOutput);
+}
+
+function setState(nextState) {
+  switch (nextState) {
+  case I_CAN_START:
+    $('#start').attr('disabled', false);
+    // $('#start').attr('onclick', 'start()');
+    $('#stop').attr('disabled', true);
+    $('#stop').removeAttr('onclick');
+    break;
+
+  case I_CAN_STOP:
+    $('#start').attr('disabled', true);
+    $('#stop').attr('disabled', false);
+    // $('#stop').attr('onclick', 'stop()');
+    break;
+
+  case I_AM_STARTING:
+    $('#start').attr('disabled', true);
+    // $('#start').removeAttr('onclick');
+    $('#stop').attr('disabled', true);
+    // $('#stop').removeAttr('onclick');
+    break;
+
+  default:
+    onError('Unknown state ' + nextState);
+    return;
+  }
+  state = nextState;
+}
+
+function sendMessage(message) {
+  var jsonMessage = JSON.stringify(message);
+  console.log('Sending message: ' + jsonMessage);
+   roomStream.emit("message", jsonMessage);
+}
+
+function showSpinner() {
+  for (var i = 0; i < arguments.length; i++) {
+    arguments[i].poster = './img/transparent-1px.png';
+    arguments[i].style.background = 'center transparent url("./img/spinner.gif") no-repeat';
+  }
+}
+
+function hideSpinner() {
+  for (var i = 0; i < arguments.length; i++) {
+    arguments[i].src = '';
+    arguments[i].poster = './img/webrtc.png';
+    arguments[i].style.background = '';
+  }
+}
+
 
 }
