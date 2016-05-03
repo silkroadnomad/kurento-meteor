@@ -6,7 +6,8 @@ if(Meteor.isCordova){
 
 if (Meteor.isClient) {
 
-  //require('webrtc-adapter');
+// require('webrtc-adapter');
+  // require('getusermedia');
   var kurentoUtils = require('kurento-utils');
 
   Template.hello.events({
@@ -31,6 +32,7 @@ const I_AM_STARTING = 2;
 
   Template.hello.rendered = function() {
   // console = new Console();
+    // require('webrtc-adapter');
   console.log('Page loaded ...');
   videoInput = document.getElementById('videoInput');
   videoOutput = document.getElementById('videoOutput');

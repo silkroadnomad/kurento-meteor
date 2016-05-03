@@ -39,17 +39,14 @@ these webrtc demos are based on the [kurento tutorial](http://doc-kurento.readth
 - for webrtc on ios https://github.com/eface2face/cordova-plugin-iosrtc/ 
 
 ##known issues
-1. force-ssl package breaks cordova in this version
-2. don't upgrade to meteor version 1.3 because cordova-plugin-iosrtc package does not work with cordova 4
-3. presenter gets wrong iceCanditates back from server when viewer connects ()
+- getUserMedia not defined npms innstalled - normal load doesn't work.
 
 ##Todo 
-- (offline) put stun/turn settings into settings file
-- (online) make Bootstrap work - (bootstrap should be included why its not reacting) 
-- (online) enable ssl (necessary for android)
+- adapter.js does not work with firefox but only in meteor 1.3
+- check force-ssl package in cordova
 
 ##Done
-- 20
-- 2016-04-08 Update to Meteor 1.3 with n
+- 2016-04-08 moved iceserver settings to settings.json
+- 2016-04-08 Update to Meteor 1.3 with npm
 - 2016-03-16 (offline - train Eggenfelden-Kufstein) - enable spinner 
 
