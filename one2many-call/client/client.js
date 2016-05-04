@@ -8,7 +8,7 @@ if (Meteor.isClient) {
  
   var video;
   var webRtcPeer;
-    
+  var kurentoUtils = require('kurento-utils');
   Template.hello.rendered = function() {
 
     console.log('Page loaded ...');

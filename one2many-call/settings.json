@@ -1,10 +1,17 @@
 {
-  
+  "inactive_stuff":{ 
+  	 	  	"ws_uri": "ws://52.207.245.179:8888/kurento",
+  			"ws_uri": "ws://192.168.99.100:8888/kurento"
+   },
   "public": {
-   "someKey": "someKey"
+ 	  	 "iceServers": [
+                          {"urls": "stun:173.194.71.127:19302"},
+                          {"urls": "turn:5.9.154.226:3478?transport=tcp", "username":"akashionata", "credential": "silkroad2015"}
+                        ]
   },
   "private": {
-  	   "ws_uri": "ws://52.207.245.179:8888/kurento"
+  			"ws_uri": "ws://5.9.154.226:8888/kurento"
+
   }	
 
 }

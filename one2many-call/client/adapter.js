@@ -17,6 +17,11 @@ mozRTCSessionDescription, webkitRTCPeerConnection, MediaStreamTrack */
 'use strict';
 
 var getUserMedia = null;
+navigator.getUserMedia = navigator.getUserMedia ||
+                         navigator.webkitGetUserMedia ||
+                         navigator.mozGetUserMedia;
+
+
 var attachMediaStream = null;
 var reattachMediaStream = null;
 var webrtcDetectedBrowser = null;
@@ -199,7 +204,8 @@ if (typeof window === 'undefined' || !window.navigator) {
   };
 
   navigator.getUserMedia = getUserMedia;
-
+  window.getUserMedia = getUserMedia;
+  
   // Shim for mediaDevices on older versions.
   if (!navigator.mediaDevices) {
     navigator.mediaDevices = {getUserMedia: requestUserMedia,
@@ -232,7 +238,8 @@ if (typeof window === 'undefined' || !window.navigator) {
     };
   }
 } else if (navigator.webkitGetUserMedia && window.webkitRTCPeerConnection) {
-  webrtcUtils.log('This appears to be Chrome');
+  webrtcUtils //webrtcUtils.log('This appears to be Chrome');
+  console.log('This appears to be Chrome');
 
   webrtcDetectedBrowser = 'chrome';
 
@@ -398,8 +405,9 @@ if (typeof window === 'undefined' || !window.navigator) {
     }
     return cc;
   };
-
+  console.log('now setting getUserMedia...');
   getUserMedia = function(constraints, onSuccess, onError) {
+    console.log('getUserMedia called...');
     if (constraints.audio) {
       constraints.audio = constraintsToChrome(constraints.audio);
     }
@@ -409,9 +417,12 @@ if (typeof window === 'undefined' || !window.navigator) {
     webrtcUtils.log('chrome: ' + JSON.stringify(constraints));
     return navigator.webkitGetUserMedia(constraints, onSuccess, onError);
   };
+
   navigator.getUserMedia = getUserMedia;
+  window.getUserMedia = getUserMedia;
 
   if (!navigator.mediaDevices) {
+
     navigator.mediaDevices = {getUserMedia: requestUserMedia,
                               enumerateDevices: function() {
       return new Promise(function(resolve) {
@@ -427,6 +438,7 @@ if (typeof window === 'undefined' || !window.navigator) {
       });
     }};
   }
+console.log('finished setting getUserMedia...');
 
   // A shim for getUserMedia method on the mediaDevices object.
   // TODO(KaptenJansson) remove once implemented in Chrome stable.
@@ -554,3 +566,5 @@ if (typeof module !== 'undefined') {
     };
   });
 }
+
+
