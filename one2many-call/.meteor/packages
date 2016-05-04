@@ -21,9 +21,9 @@ lepozepo:streams
 
 
 nemo64:bootstrap
-crosswalk
 standard-minifier-css
 standard-minifier-js
 
 
 npm-container
+crosswalk

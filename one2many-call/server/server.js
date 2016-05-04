@@ -8,7 +8,7 @@ if (Meteor.isServer) {
 
     console.log('configuring kurento media server on url: '+ws_uri);
 
-  var kurento = Meteor.npmRequire("kurento-client");
+  var kurento = require('kurento-client');
       
   candidatesQueue = {};
   presenter = null;
