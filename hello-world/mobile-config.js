@@ -27,6 +27,7 @@ App.info({
 App.accessRule('http://*');
 App.accessRule('https://*');
 App.accessRule('*');
+App.accessRule('*://test.remote.yoga:*');
 App.accessRule('*://173.194.71.127:*');
 App.accessRule('*5.9.154.226:*');
 App.accessRule('*://localhost:*');

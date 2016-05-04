@@ -38,14 +38,9 @@ these webrtc demos are based on the [kurento tutorial](http://doc-kurento.readth
 - signaling is done by [meteor streams] (http://arunoda.github.io/meteor-streams/) (inactive project!) 
 - for webrtc on ios https://github.com/eface2face/cordova-plugin-iosrtc/ 
 
-##known issues
-- getUserMedia not defined npms innstalled - normal load doesn't work.
-
-##Todo 
-- adapter.js does not work with firefox but only in meteor 1.3
-- check force-ssl package in cordova
 
 ##Done
+- 2015-05-04 update to meteor 1.3
 - 2016-04-08 moved iceserver settings to settings.json
 - 2016-04-08 Update to Meteor 1.3 with npm
 - 2016-03-16 (offline - train Eggenfelden-Kufstein) - enable spinner 
