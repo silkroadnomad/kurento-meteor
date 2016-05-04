@@ -48,7 +48,6 @@ mongo@1.1.7
 mongo-id@1.0.4
 nemo64:bootstrap@3.3.5_2
 nemo64:bootstrap-data@3.3.5
-npm-container@1.2.0
 npm-mongo@1.4.43
 observe-sequence@1.0.11
 ordered-dict@1.0.7
