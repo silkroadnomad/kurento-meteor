@@ -22,7 +22,8 @@ lepozepo:streams
 
 
 nemo64:bootstrap
-crosswalk
 standard-minifier-css
 standard-minifier-js
 meteorhacks:async
+crosswalk
+mdg:camera

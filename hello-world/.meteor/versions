@@ -34,8 +34,10 @@ insecure@1.0.7
 jquery@1.11.8
 launch-screen@1.0.11
 lepozepo:streams@0.2.0
+less@2.6.0
 livedata@1.0.18
 logging@1.0.12
+mdg:camera@1.4.1
 meteor@1.1.14
 meteor-base@1.0.4
 meteorhacks:async@1.0.0

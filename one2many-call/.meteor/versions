@@ -33,8 +33,10 @@ id-map@1.0.7
 jquery@1.11.8
 launch-screen@1.0.11
 lepozepo:streams@0.2.0
+less@2.6.0
 livedata@1.0.18
 logging@1.0.12
+mdg:camera@1.4.1
 meteor@1.1.14
 meteor-base@1.0.4
 minifier-css@1.1.11
@@ -48,7 +50,6 @@ mongo@1.1.7
 mongo-id@1.0.4
 nemo64:bootstrap@3.3.5_2
 nemo64:bootstrap-data@3.3.5
-npm-container@1.2.0
 npm-mongo@1.4.43
 observe-sequence@1.0.11
 ordered-dict@1.0.7

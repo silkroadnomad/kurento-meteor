@@ -23,7 +23,5 @@ lepozepo:streams
 nemo64:bootstrap
 standard-minifier-css
 standard-minifier-js
-
-
-npm-container
-crosswalk
+mdg:camera
+crosswalk@=1.6.2
