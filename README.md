@@ -37,7 +37,8 @@ these webrtc demos are based on the [kurento tutorial](http://doc-kurento.readth
 ##Android
 - in order to run on android, please execute ``meteor add-platform android``
 - edit AndroidManifest.xml in .meteor/local/cordova-build/platforms/android and add:  
-	``
+	``  <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    	<uses-permission android:name="android.permission.RECORD_VIDEO" />
 		<uses-permission android:name="android.permission.CAMERA" /> 
 		<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 	``  
@@ -49,7 +50,7 @@ these webrtc demos are based on the [kurento tutorial](http://doc-kurento.readth
 - for webrtc on ios https://github.com/eface2face/cordova-plugin-iosrtc/ 
 
 
-##Done
+##Changes
 - 2015-05-04 update to meteor 1.3
 - 2016-04-08 moved iceserver settings to settings.json
 - 2016-04-08 Update to Meteor 1.3 with npm
