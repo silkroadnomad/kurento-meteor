@@ -5,7 +5,7 @@ function checkPermissions(){
       console.log("App is " + (authorized ? "authorized" : "denied") + " access to the microphone");
 
       if(!authorized) {
-         cordova.plugins.diagnostic.requestMicrophoneAuthorization(function(granted){
+         cordova.plugins.diagnostic.requestMicropplathoneAuthorization(function(granted){
           console.log("Microphone access is: "+(granted ? "granted" : "denied"));
           }, function(error){
               console.error("The following error occurred: "+error);
@@ -36,7 +36,7 @@ function checkPermissions(){
 if(Meteor.isCordova){
     Meteor.startup(function () {
           if(window.device.platform === 'iOS') cordova.plugins.iosrtc.registerGlobals();
-   
+          checkPermissions();
     });
 }
 
@@ -106,7 +106,7 @@ const I_AM_STARTING = 2;
 
 function start() {
   console.log('Starting video call ...')
-         checkPermissions();
+  
   // Disable start button
   setState(I_AM_STARTING);
   showSpinner(videoInput, videoOutput);
