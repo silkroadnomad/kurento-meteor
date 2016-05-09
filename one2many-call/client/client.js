@@ -2,35 +2,40 @@
 
 function checkPermissions(){
   //https://github.com/dpa99c/cordova-diagnostic-plugin/#android-runtime-permissions
-  cordova.plugins.diagnostic.isMicrophoneAuthorized(function(authorized){
-      console.log("App is " + (authorized ? "authorized" : "denied") + " access to the microphone");
 
-      if(!authorized) {
-         cordova.plugins.diagnostic.requestMicrophoneAuthorization()(function(granted){
-          console.log("Microphone access is: "+(granted ? "granted" : "denied"));
-          }, function(error){
-              console.error("The following error occurred: "+error);
-          });      
-      }
-  }, function(error){
-      console.error("The following error occurred: "+error);
-  });
 
-    cordova.plugins.diagnostic.isCameraAuthorized(function(authorized){
-      
-        console.log("App is " + (authorized ? "authorized" : "denied") + " access to the camera");
+  cordova.plugins.diagnostic.isCameraAuthorized(function(authorized){
 
-        if(!authorized) {
-            cordova.plugins.diagnostic.requestCameraAuthorization(function(granted){
-                console.log("Authorization request for camera use was " + (granted ? "granted" : "denied"));
+    console.log("App is " + (authorized ? "authorized" : "denied") + " access to the camera");
+
+    if(!authorized) {
+        cordova.plugins.diagnostic.requestCameraAuthorization(function(granted){
+            console.log("Authorization request for camera use was " + (granted ? "granted" : "denied"));
+
+              cordova.plugins.diagnostic.isMicrophoneAuthorized(function(authorized){
+              console.log("App is " + (authorized ? "authorized" : "denied") + " access to the microphone");
+
+                if(!authorized) {
+                   cordova.plugins.diagnostic.requestMicrophoneAuthorization()(function(granted){
+                    console.log("Microphone access is: "+(granted ? "granted" : "denied"));
+
+
+                    }, function(error){
+                        console.error("The following error occurred: "+error);
+                    });      
+                }
             }, function(error){
-                console.error(error);
+                console.error("The following error occurred: "+error);
             });
-        }
 
-    }, function(error){
-        console.error("The following error occurred: "+error);
-    });
+        }, function(error){
+            console.error(error);
+        });
+    }
+
+}, function(error){
+    console.error("The following error occurred: "+error);
+});
 
 }
 
