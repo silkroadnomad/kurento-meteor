@@ -6,7 +6,7 @@ function checkPermissions(){
       console.log("App is " + (authorized ? "authorized" : "denied") + " access to the microphone");
 
       if(!authorized) {
-         cordova.plugins.diagnostic.requestMicropplathoneAuthorization(function(granted){
+         cordova.plugins.diagnostic.requestMicrophoneAuthorization()(function(granted){
           console.log("Microphone access is: "+(granted ? "granted" : "denied"));
           }, function(error){
               console.error("The following error occurred: "+error);
@@ -33,16 +33,17 @@ function checkPermissions(){
     });
 
 }
+
 if(Meteor.isCordova){
     Meteor.startup(function () {
           if(window.device.platform === 'iOS') cordova.plugins.iosrtc.registerGlobals();
-
-          checkPermissions();
     });
+
+    checkPermissions();
 }
 
 if (Meteor.isClient) {
- 
+  console.log('cordova :'+Meteor.isCordova);
   var video;
   var webRtcPeer;
   var kurentoUtils = require('kurento-utils');
