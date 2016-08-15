@@ -1,53 +1,74 @@
 
 
+/*
 function checkPermissions(){
-  //https://github.com/dpa99c/cordova-diagnostic-plugin/#android-runtime-permissions
+
+    //https://github.com/dpa99c/cordova-diagnostic-plugin/#android-runtime-permissions
+    cordova.plugins.diagnostic.isCameraAuthorized(function(authorized){
+
+      console.log("App is " + (authorized ? "authorized" : "denied") + " access to the camera");
+
+      if(!authorized) {
+          cordova.plugins.diagnostic.requestCameraAuthorization(function(granted){
+              console.log("Authorization request for camera use was " + (granted ? "granted" : "denied"));
+
+                cordova.plugins.diagnostic.isMicrophoneAuthorized(function(authorized){
+                console.log("App is " + (authorized ? "authorized" : "denied") + " access to the microphone");
+
+                  if(!authorized) {
+                     cordova.plugins.diagnostic.requestMicrophoneAuthorization()(function(granted){
+                      console.log("Microphone access is: "+(granted ? "granted" : "denied"));
 
 
-  cordova.plugins.diagnostic.isCameraAuthorized(function(authorized){
+                      }, function(error){
+                          console.error("The following error occurred: "+error);
+                      });      
+                  }
+              }, function(error){
+                  console.error("The following error occurred: "+error);
+              });
 
-    console.log("App is " + (authorized ? "authorized" : "denied") + " access to the camera");
+          }, function(error){
+              console.error(error);
+          });
+      }
 
-    if(!authorized) {
-        cordova.plugins.diagnostic.requestCameraAuthorization(function(granted){
-            console.log("Authorization request for camera use was " + (granted ? "granted" : "denied"));
+  }, function(error){
+      console.error("The following error occurred: "+error);
+  });
 
-              cordova.plugins.diagnostic.isMicrophoneAuthorized(function(authorized){
-              console.log("App is " + (authorized ? "authorized" : "denied") + " access to the microphone");
+} */
 
-                if(!authorized) {
-                   cordova.plugins.diagnostic.requestMicrophoneAuthorization()(function(granted){
-                    console.log("Microphone access is: "+(granted ? "granted" : "denied"));
-
-
-                    }, function(error){
-                        console.error("The following error occurred: "+error);
-                    });      
-                }
-            }, function(error){
-                console.error("The following error occurred: "+error);
-            });
-
-        }, function(error){
-            console.error(error);
-        });
+console.log('before isCordova');
+if (Meteor.isCordova) {
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        console.log("console.log works well");
     }
-
-}, function(error){
-    console.error("The following error occurred: "+error);
-});
-
-}
+ }
 
 if(Meteor.isCordova){
-    Meteor.startup(function () {
-          if(window.device.platform === 'iOS') cordova.plugins.iosrtc.registerGlobals();
+    console.log('inside isCordova ');
+    
+    // Meteor.startup(function () {
+    document.addEventListener('deviceready', function () {
+        // Just for iOS devices.
+        if (window.device.platform === 'iOS') {
+            cordova.plugins.iosrtc.registerGlobals();
+        }
     });
+      console.log('inside startup');
+          if(window.device.platform === 'iOS'){
+              console.log('inside ios');
+              //cordova.plugins.iosrtc.registerGlobals();
+          } 
+    // });
 
-    checkPermissions();
+  // checkPermissions();
 }
 
 if (Meteor.isClient) {
+  // cordova.plugins.iosrtc.registerGlobals();
   console.log('cordova :'+Meteor.isCordova);
   var video;
   var webRtcPeer;

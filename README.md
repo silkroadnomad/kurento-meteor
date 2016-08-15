@@ -31,7 +31,7 @@ these webrtc demos are based on the [kurento tutorial](http://doc-kurento.readth
 - within "Build Settings" add/set:
 	-  "Enable Bitcode" to ``no``
 	-  "Runpath Search Paths" setting with value ``@executable_path/Frameworks``
-	-   add this to Bridging-Header.h ``#import "cordova-plugin-iosrtc-Bridging-Header.h``
+	-   add this to Bridging-Header.h ``#import "cordova-plugin-iosrtc-Bridging-Header.h`
 	-  "Objective-C Bridging Header" to ``${PROJECT_NAME}/Plugins/cordova-plugin-iosrtc/cordova-plugin-iosrtc-Bridging-Header.h`` (read more about the "Bridging Header" above). see: https://github.com/eface2face/cordova-plugin-iosrtc/blob/master/docs/Building.md
 	- meteor run-device ios
 
@@ -50,9 +50,13 @@ these webrtc demos are based on the [kurento tutorial](http://doc-kurento.readth
 - signaling is done by [meteor streams] (http://arunoda.github.io/meteor-streams/) (inactive project!) 
 - for webrtc on ios https://github.com/eface2face/cordova-plugin-iosrtc/ 
 
+- TODO: 
+	https://forums.meteor.com/t/webrtc-plugin-for-cordova-ios-for-meteor-1-3/20372
+	https://github.com/eface2face/cordova-plugin-iosrtc/pull/138
+	https://github.com/meteor/meteor/issues/6847
 
 ##Changes
-- 2015-05-09 added 
+- 2015-05-09 added permissionsrequest for camera and microphone.
 - 2015-05-04 update to meteor 1.3
 - 2016-04-08 moved iceserver settings to settings.json
 - 2016-04-08 Update to Meteor 1.3 with npm

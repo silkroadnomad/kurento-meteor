@@ -1,2 +1,2 @@
-cordova-plugin-iosrtc@3.0.0
-cordova.plugins.diagnostic@2.3.16
+cordova-plugin-console@1.0.3
+cordova-plugin-iosrtc@https://github.com/eface2face/cordova-plugin-iosrtc.git#3d4ed107a7b4c4870b950b80361cd58dd386f94a

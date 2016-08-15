@@ -22,7 +22,7 @@ App.info({
 
 // Set PhoneGap/Cordova preferences
 // App.setPreference('BackgroundColor', '0xff0000ff');
-
+App.setPreference('WebAppStartupTimeout', 60000);
 
 App.accessRule('http://*');
 App.accessRule('https://*');
