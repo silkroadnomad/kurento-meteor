@@ -11,7 +11,6 @@ these webrtc demos are based on the [kurento tutorial](http://doc-kurento.readth
 5. configure settings.json if kurento media server runs on different host
 6. run ``meteor npm install`` (install all npm modules)
 7. configure settings.json in the project root to configure url of kurento don't use --settings settings.json in case its on the same machine
-
 ``
 {
   
