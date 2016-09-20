@@ -11,15 +11,15 @@ these webrtc demos are based on the [kurento tutorial](http://doc-kurento.readth
 5. configure settings.json if kurento media server runs on different host
 6. run ``meteor npm install`` (install all npm modules)
 7. configure settings.json in the project root to configure url of kurento don't use --settings settings.json in case its on the same machine
-``
-{
-  
-  "private": {
-  	   "ws_uri": "ws://kurento-reachable-ip:8888/kurento",
-  }	
+	``
+		{
+		  
+		  "private": {
+		  	   "ws_uri": "ws://kurento-reachable-ip:8888/kurento",
+		  }	
 
-}
-``
+		}
+	``
 8. run ``meteor --release 1.3.2.4 --settings settings.json`` 
 9. connect to http://localhost:3000
 
