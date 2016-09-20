@@ -10,8 +10,7 @@ these webrtc demos are based on the [kurento tutorial](http://doc-kurento.readth
 4. install and run kurento [docker](https://www.docker.com/) [image] (https://github.com/Kurento/kurento-docker/tree/master/docker) please run it with ``sudo docker run -d --name kurento -p 8888:8888 fiware/stream-oriented-kurento``
 5. configure settings.json if kurento media server runs on different host
 6. run ``meteor npm install`` (install all npm modules)
-7. run ``meteor --release 1.3.2.4 --settings settings.json` 
-8. connect to http://localhost:3000
+7. configure settings.json in the project root to configure url of kurento don't use --settings settings.json in case its on the same machine
 
 ``
 {
@@ -22,6 +21,8 @@ these webrtc demos are based on the [kurento tutorial](http://doc-kurento.readth
 
 }
 ``
+8. run ``meteor --release 1.3.2.4 --settings settings.json` 
+9. connect to http://localhost:3000
 
 
 ##iOS
