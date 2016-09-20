@@ -21,7 +21,7 @@ these webrtc demos are based on the [kurento tutorial](http://doc-kurento.readth
 
 }
 ``
-8. run ``meteor --release 1.3.2.4 --settings settings.json` 
+8. run ``meteor --release 1.3.2.4 --settings settings.json`` 
 9. connect to http://localhost:3000
 
 
