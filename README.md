@@ -13,11 +13,9 @@ these webrtc demos are based on the [kurento tutorial](http://doc-kurento.readth
 7. configure settings.json in the project root to configure url of kurento don't use --settings settings.json in case its on the same machine
 	``
 		{
-		  
 		  "private": {
-		  	   "ws_uri": "ws://kurento-reachable-ip:8888/kurento",
+		  	   "ws_uri": "ws://kurento-reachable-ip:8888/kurento"
 		  }	
-
 		}
 	``
 8. run ``meteor --release 1.3.2.4 --settings settings.json`` 
